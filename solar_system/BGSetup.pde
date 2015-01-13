@@ -29,7 +29,7 @@ class BGSetup
       bgS = random(0,200);
       bgB = random(50,200);
       counter = 0;
-      bgALPHA = 20;
+      bgALPHA = 50;
     }
   }
   
