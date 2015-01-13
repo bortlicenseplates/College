@@ -1,26 +1,21 @@
-import ddf.minim.spi.*;
-import ddf.minim.signals.*;
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.ugens.*;
-import ddf.minim.effects.*;
-/*-- Classes --*/
-Minim sound;
-AudioPlayer music;
+/*------------ Classes --------------*/
+Body mercury;                        //
+Body venus;                          //
+Body earth;                          //
+Body mars;                           //
+Body sun;                            //
+Body moon;                           //
+                                     //
+BGSetup bground;                     //
+                                     //
+/*-----------------------------------*/
 
-Planet mercury;
-Planet venus;
-Planet earth;
-Planet mars;
-Sun sun;
 
-BGSetup bground;
-/*------------*/
 
 /*-------- display variables --------*/
-float halfwidth;
-float halfheight;
-
+float halfwidth;                     //
+float halfheight;                    //
+                                     //
 /*-----------------------------------*/
 
 void setup()
@@ -29,16 +24,13 @@ void setup()
   colorMode(HSB);
   frameRate(60);
   //constructors
-  mercury = new Planet(88,   70,    2.440);
-  venus   = new Planet(255,  107,   6.052);
-  earth   = new Planet(365,  147.1, 6.371); //speed,orbit,size
-  mars    = new Planet(687,  288,   3.390);
-  sun     = new Sun(69.58);
-  
-  sound = new Minim(this);
-  music = sound.loadFile("14 Tears From The Compound Eye.mp3");
-  music.rewind();
-  music.play();
+  sun     = new Body(69.58);
+  mercury = new Body(88,   70,    2.440);
+  venus   = new Body(255,  107,   6.052);
+  earth   = new Body(365,  147.1, 6.371); //speed,orbit,size
+  mars    = new Body(687,  288,   3.390);
+  moon    = new Body(27,    10,   1.738,  earth.bodyX, earth.bodyY);
+
   
   bground = new BGSetup();
   //declare display varibles
@@ -58,7 +50,9 @@ void draw()
   venus.draw();
   earth.draw();
   mars.draw();
-  sun.draw();
+  sun.sun();
+  moon.moon(earth.bodyX, earth.bodyY);
+  moon.create();
   
   noCursor();
 }
